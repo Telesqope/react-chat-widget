@@ -1,3 +1,4 @@
+import React from 'react';
 import { Provider } from 'react-redux';
 
 import Widget from './components/Widget';
@@ -9,9 +10,9 @@ import { AnyFunction } from './utils/types';
 type Props = {
   handleNewUserMessage: AnyFunction;
   handleQuickButtonClicked?: AnyFunction;
-  title?: string;
+  title?: React.ReactNode;
   titleAvatar?: string;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
   senderPlaceHolder?: string;
   showCloseButton?: boolean;
   fullScreenMode?: boolean;

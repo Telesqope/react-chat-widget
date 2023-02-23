@@ -16,8 +16,8 @@ interface ISenderRef {
 }
 
 type Props = {
-  title: string;
-  subtitle: string;
+  title: React.ReactNode;
+  subtitle: React.ReactNode;
   senderPlaceHolder: string;
   showCloseButton: boolean;
   disabledInput: boolean;
