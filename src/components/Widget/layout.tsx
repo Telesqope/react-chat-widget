@@ -13,9 +13,9 @@ import FullScreenPreview from './components/FullScreenPreview';
 import './style.scss';
 
 type Props = {
-  title: string;
+  title: React.ReactNode;
   titleAvatar?: string;
-  subtitle: string;
+  subtitle: React.ReactNode;
   onSendMessage: AnyFunction;
   onToggleConversation: AnyFunction;
   senderPlaceHolder: string;

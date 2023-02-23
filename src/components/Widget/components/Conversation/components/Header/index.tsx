@@ -3,14 +3,18 @@ const close = require('../../../../../../../assets/clear-button.svg') as string;
 import './style.scss';
 
 type Props = {
-  title: string;
-  subtitle: string;
+  title: React.ReactNode;
+  subtitle: React.ReactNode;
   toggleChat: () => void;
   showCloseButton: boolean;
   titleAvatar?: string;
 }
 
 function Header({ title, subtitle, toggleChat, showCloseButton, titleAvatar }: Props) {
+  const sub = typeof subtitle === `string` ?
+    <span>{subtitle}</span> :
+    <>{subtitle}</>;
+
   return (
     <div className="rcw-header">
       {showCloseButton &&

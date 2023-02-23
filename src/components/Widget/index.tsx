@@ -7,9 +7,9 @@ import { AnyFunction } from '../../utils/types';
 import WidgetLayout from './layout';
 
 type Props = {
-  title: string;
+  title: React.ReactNode;
   titleAvatar?: string;
-  subtitle: string;
+  subtitle: React.ReactNode;
   senderPlaceHolder: string;
   profileAvatar?: string;
   profileClientAvatar?: string;
