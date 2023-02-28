@@ -38,7 +38,9 @@ type Props = {
   zoomStep?: number;
   showBadge?: boolean;
   resizable?: boolean;
-  emojis?: boolean
+  emojis?: boolean;
+  disabled?: boolean;
+  disabledUi?: React.ReactNode;
 }
 
 function WidgetLayout({
@@ -67,7 +69,9 @@ function WidgetLayout({
   zoomStep,
   showBadge,
   resizable,
-  emojis
+  emojis,
+  disabled,
+  disabledUi,
 }: Props) {
   const dispatch = useDispatch();
   const { dissableInput, showChat, visible } = useSelector((state: GlobalState) => ({
@@ -121,34 +125,15 @@ function WidgetLayout({
   return (
     <div
       className={cn('rcw-widget-container', {
+        'rcw-disabled': disabled,
         'rcw-full-screen': fullScreenMode,
         'rcw-previewer': imagePreview,
         'rcw-close-widget-container ': !showChat
         })
       }
     >
-      {showChat &&
-        <Conversation
-          title={title}
-          subtitle={subtitle}
-          sendMessage={onSendMessage}
-          senderPlaceHolder={senderPlaceHolder}
-          profileAvatar={profileAvatar}
-          profileClientAvatar={profileClientAvatar}
-          toggleChat={onToggleConversation}
-          showCloseButton={showCloseButton}
-          disabledInput={dissableInput}
-          autofocus={autofocus}
-          titleAvatar={titleAvatar}
-          className={showChat ? 'active' : 'hidden'}
-          onQuickButtonClicked={onQuickButtonClicked}
-          onTextInputChange={onTextInputChange}
-          sendButtonAlt={sendButtonAlt}
-          showTimeStamp={showTimeStamp}
-          resizable={resizable}
-          emojis={emojis}
-        />
-      }
+      { showChat && !disabled && <Chat /> }
+      { showChat && disabled && <Disabled /> }
       {customLauncher ?
         customLauncher(onToggleConversation) :
         !fullScreenMode &&
@@ -167,6 +152,38 @@ function WidgetLayout({
       }
     </div>
   );
+
+  function Chat() {
+    return <Conversation
+      title={title}
+      subtitle={subtitle}
+      sendMessage={onSendMessage}
+      senderPlaceHolder={senderPlaceHolder}
+      profileAvatar={profileAvatar}
+      profileClientAvatar={profileClientAvatar}
+      toggleChat={onToggleConversation}
+      showCloseButton={showCloseButton}
+      disabledInput={dissableInput}
+      autofocus={autofocus}
+      titleAvatar={titleAvatar}
+      className={showChat ? 'active' : 'hidden'}
+      onQuickButtonClicked={onQuickButtonClicked}
+      onTextInputChange={onTextInputChange}
+      sendButtonAlt={sendButtonAlt}
+      showTimeStamp={showTimeStamp}
+      resizable={resizable}
+      emojis={emojis}
+    />;
+  }
+
+  function Disabled() {
+    if (disabledUi) {
+      return <>{disabledUi}</>;
+    }
+    return <div className='rcw-disabled-message'>
+      Chat is not available
+    </div>;
+  }
 }
 
 export default WidgetLayout;

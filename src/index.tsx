@@ -35,6 +35,8 @@ type Props = {
   handleSubmit?: AnyFunction;
   showBadge?: boolean;
   resizable?: boolean;
+  disabled?: boolean;
+  disabledUi?: React.ReactNode;
 } & typeof defaultProps;
 
 function ConnectedWidget({
@@ -64,7 +66,9 @@ function ConnectedWidget({
   handleSubmit,
   showBadge,
   resizable,
-  emojis
+  emojis,
+  disabled,
+  disabledUi,
 }: Props) {
   return (
     <Provider store={store}>
@@ -96,6 +100,8 @@ function ConnectedWidget({
         showBadge={showBadge}
         resizable={resizable}
         emojis={emojis}
+        disabled={disabled}
+        disabledUi={disabledUi}
       />
     </Provider>
   );
@@ -118,6 +124,8 @@ const defaultProps = {
   imagePreview: false,
   zoomStep: 80,
   showBadge: true,
+  disabled: false,
+  disabledUi: undefined,
 };
 ConnectedWidget.defaultProps = defaultProps;
 
