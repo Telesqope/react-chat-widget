@@ -28,20 +28,12 @@ export function toggleWidget() {
   store.dispatch(actions.toggleChat());
 }
 
-export function toggleDisabled() {
-  store.dispatch(actions.toggleDisabled());
-}
-
 export function toggleInputDisabled() {
   store.dispatch(actions.toggleInputDisabled());
 }
 
 export function dropMessages() {
   store.dispatch(actions.dropMessages());
-}
-
-export function isWidgetDisabled(): boolean {
-  return store.getState().behavior.disabled;
 }
 
 export function isWidgetOpened(): boolean {

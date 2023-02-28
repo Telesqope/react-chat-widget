@@ -9,12 +9,6 @@ export function toggleChat(): actionsTypes.ToggleChat {
   };
 }
 
-export function toggleDisabled(): actionsTypes.ToggleDisabled {
-  return {
-    type: actionsTypes.TOGGLE_DISABLED
-  };
-}
-
 export function toggleInputDisabled(): actionsTypes.ToggleInputDisabled {
   return {
     type: actionsTypes.TOGGLE_INPUT_DISABLED
